@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/tdhurwe/Documents/Main_Assignment_Selenium">
+        <classes>
+            <class name="Tests.CustomerTest">
+                <methods>
+                    <include name="validateAddCustomers"/>
+                    <include name="validateOpenAccount"/>
+                    <include name="backHome"/>
+                    <include name="verifyDeposit"/>
+                    <include name="verifyWithdraw"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
