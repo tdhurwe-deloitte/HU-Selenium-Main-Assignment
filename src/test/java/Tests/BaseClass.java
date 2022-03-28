@@ -31,6 +31,7 @@ public class BaseClass {
         logger.info("Opening Browser");
         Thread.sleep(2);
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        takeScreenShot("Opening browser");
     }
 
     public XSSFSheet excelSheetLoader(int sheetNum) throws Exception{
@@ -41,12 +42,12 @@ public class BaseClass {
         return sheet;
     }
 
-    public static void takeScreenShot(String fileName) throws Exception{    // need to fix
+    public static void takeScreenShot(String filename) throws Exception{    // need to fix
         File screenShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         DateFormat dateFormat = new SimpleDateFormat("dd-mm-yy h-m-s");
         String folderPath = "C:/Users/tdhurwe/Documents/Main_Assignment_Selenium/selenium logs/";
         Date date = new Date();
-        FileUtils.copyFile(screenShot,new File(folderPath+fileName+"-"+dateFormat.format(date)+".png"));
+        FileUtils.copyFile(screenShot,new File(folderPath+filename+"-"+dateFormat.format(date)+".png"));
     }
 
     public boolean isAlertPresent(){

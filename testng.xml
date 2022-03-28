@@ -10,6 +10,7 @@
                     <include name="backHome"/>
                     <include name="verifyDeposit"/>
                     <include name="verifyWithdraw"/>
+                    <include name="verifyTransaction"/>
                 </methods>
             </class>
         </classes>

@@ -39,7 +39,6 @@ public class CustomerTest extends BaseClass{
                     }
                 }
 //                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-                Thread.sleep(2000);
                 addCustomers.clickManagerLogin();
 //                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
                 Thread.sleep(2000);
@@ -55,7 +54,6 @@ public class CustomerTest extends BaseClass{
 
                 if (isAlertPresent()) {
                     logger.info("Customer added successfully");
-//                    takeScreenShot(firstName);
                 } else {
                     logger.error("Error occurred in validateAddCustomer function");
                 }
@@ -74,7 +72,9 @@ public class CustomerTest extends BaseClass{
         openAccount.setSelectCurrency();
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         Thread.sleep(2000);
+        takeScreenShot("Account creation");
         openAccount.submit();
+        Thread.sleep(2000);
         if (isAlertPresent()){
             logger.info("Account created successfully");
         }
@@ -88,11 +88,22 @@ public class CustomerTest extends BaseClass{
         driver.findElement(By.xpath("//*[text()='Home']")).click();
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         Thread.sleep(2000);
+        String homeURL = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login";
+        String actualURL = driver.getCurrentUrl();
+        if (homeURL.equals(actualURL)) {
+            logger.info("Successfully returned to home page");
+        }
+        else{
+            logger.error("Error occurred in backHome method");
+        }
+
+        Thread.sleep(2000);
     }
 
     @Test(priority = 4)
     public void verifyDeposit() throws Exception{
         deposit = new Deposit(driver);
+        Thread.sleep(2000);
         deposit.setCustomerLoginButton();
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         Thread.sleep(2000);
@@ -102,28 +113,48 @@ public class CustomerTest extends BaseClass{
         deposit.setLoginButton();
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         Thread.sleep(2000);
-//        String originalBal = deposit.makeDeposit();
+        String originalBal = driver.findElement(By.xpath("//strong[@class='ng-binding'][2]")).getText();
+        int originalBalance = Integer.parseInt(originalBal);
         deposit.makeDeposit();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         Thread.sleep(2000);
         String actualMessage = driver.findElement(By.xpath("//span[text()='Deposit Successful']")).getText();
         String expectedMessage = "Deposit Successful";
-        Assert.assertEquals(actualMessage, expectedMessage);
-//        String updatedBal = driver.findElement(By.xpath("//strong[@class='ng-binding'][2]")).getText();
-        // Need to enter method to check updated amount
+        Assert.assertEquals(actualMessage, expectedMessage, "Unsuccessful Deposit");
+        String updatedBal = driver.findElement(By.xpath("//strong[@class='ng-binding'][2]")).getText();
+        int updatedBalance = Integer.parseInt(updatedBal);
+        if (updatedBalance == originalBalance + 10000){
+            logger.info("Balance updated");
+            takeScreenShot("Balance update");
+        }
+        else{
+            logger.error("Error in verify deposit method");
+        }
     }
 
     @Test(priority = 5)
     public void verifyWithdraw() throws Exception{
         withdraw = new Withdraw(driver);
         withdraw.clickWithdraw();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        String originalBal = driver.findElement(By.xpath("//strong[@class='ng-binding'][2]")).getText();
+        int originalBalance = Integer.parseInt(originalBal);
         Thread.sleep(2000);
         withdraw.enterAmount();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         Thread.sleep(2000);
         withdraw.submit();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         Thread.sleep(2000);
+        String updatedBal = driver.findElement(By.xpath("//strong[@class='ng-binding'][2]")).getText();
+        int updatedBalance = Integer.parseInt(updatedBal);
+        if (updatedBalance == originalBalance - 6000){
+            logger.info("Withdraw successful");
+        }
+        else{
+            logger.error("Error in verifyWithdraw method");
+        }
+    }
+
+
+    @Test(priority = 6)
+    public void verifyTransaction() throws Exception{
+        System.out.println("pass");
     }
 }

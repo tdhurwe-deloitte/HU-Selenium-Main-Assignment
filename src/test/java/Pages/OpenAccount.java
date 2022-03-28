@@ -32,6 +32,7 @@ public class OpenAccount {
         Random random = new Random();
         int randomNum = random.nextInt(3);
         select.selectByIndex(randomNum);
+        Thread.sleep(2000);
     }
 
     public void submit(){
