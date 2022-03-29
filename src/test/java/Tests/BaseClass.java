@@ -15,7 +15,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.logging.log4j.*;
+import org.testng.annotations.Listeners;
 
+@Listeners(Tests.Listeners.class)
 public class BaseClass {
     public static WebDriver driver;
     public static WebDriverWait wait;
@@ -29,9 +31,10 @@ public class BaseClass {
         driver.manage().window().maximize();
         driver.get(url);
         logger.info("Opening Browser");
-        Thread.sleep(2);
+        Thread.sleep(2000);
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         takeScreenShot("Opening browser");
+        Thread.sleep(2000);
     }
 
     public XSSFSheet excelSheetLoader(int sheetNum) throws Exception{
