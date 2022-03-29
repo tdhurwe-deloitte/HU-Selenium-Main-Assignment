@@ -21,7 +21,7 @@ public class CustomerTest extends BaseClass{
     String lastName = null;
     String postCode = null;
     @Test(priority = 1)
-    public void validateAddCustomers() throws Exception{
+    public void validateAddCustomers() throws Exception{    // validating add customers
         XSSFSheet sheet = excelSheetLoader(0);
         addCustomers = new AddCustomers(driver);
 //        System.out.println(sheet.getLastRowNum()+"\n"+sheet.getRow(1).getCell(0).getStringCellValue());
@@ -62,7 +62,7 @@ public class CustomerTest extends BaseClass{
     }
 
     @Test(priority = 2)
-    public void validateOpenAccount() throws Exception{
+    public void validateOpenAccount() throws Exception{ // opening account
         openAccount = new OpenAccount(driver);
         openAccount.clickOpenAccount();
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));

@@ -1,0 +1,10 @@
+[INFO ] 2022-03-29 12:07:53.176 [main] BaseClass - Test C:/Users/tdhurwe/Documents/Main_Assignment_Selenium Started
+[INFO ] 2022-03-29 12:07:56.533 [main] BaseClass - Opening Browser
+[INFO ] 2022-03-29 12:08:08.252 [main] BaseClass - Customer added successfully
+[INFO ] 2022-03-29 12:08:20.999 [main] BaseClass - Account created successfully
+[INFO ] 2022-03-29 12:08:23.101 [main] BaseClass - Successfully returned to home page
+[INFO ] 2022-03-29 12:08:36.121 [main] BaseClass - Balance updated
+[INFO ] 2022-03-29 12:08:42.537 [main] BaseClass - Withdraw successful
+[INFO ] 2022-03-29 12:08:48.880 [main] BaseClass - Unsuccessful transaction
+[INFO ] 2022-03-29 12:08:51.230 [main] BaseClass - Successful transactions
+[INFO ] 2022-03-29 12:08:51.416 [main] BaseClass - Test C:/Users/tdhurwe/Documents/Main_Assignment_Selenium ended
