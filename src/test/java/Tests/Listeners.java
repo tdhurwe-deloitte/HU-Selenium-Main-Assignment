@@ -36,16 +36,34 @@ public class Listeners extends BaseClass implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
         ITestListener.super.onTestSkipped(result);
+        try {
+            takeScreenShot("Skipped test cases");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
         ITestListener.super.onTestFailedButWithinSuccessPercentage(result);
+        try {
+            takeScreenShot("Failure within success percentages");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onTestFailedWithTimeout(ITestResult result) {
         ITestListener.super.onTestFailedWithTimeout(result);
+        try {
+            takeScreenShot("Test failed with timeout");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

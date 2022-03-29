@@ -14,6 +14,7 @@ public class CustomerTest extends BaseClass{
     OpenAccount openAccount;
     Deposit deposit;
     Withdraw withdraw;
+    Transactions transaction;
     XSSFRow row = null;
     XSSFCell cell = null;
     String firstName = null;
@@ -80,6 +81,7 @@ public class CustomerTest extends BaseClass{
         }
         else{
             logger.error("Error in validateOpenAccount function");
+            takeScreenShot("Opening account error");
         }
     }
 
@@ -132,7 +134,7 @@ public class CustomerTest extends BaseClass{
     }
 
     @Test(priority = 5)
-    public void verifyWithdraw() throws Exception{
+    public void verifyWithdraw1() throws Exception{
         withdraw = new Withdraw(driver);
         withdraw.clickWithdraw();
         String originalBal = driver.findElement(By.xpath("//strong[@class='ng-binding'][2]")).getText();
@@ -152,9 +154,38 @@ public class CustomerTest extends BaseClass{
         }
     }
 
+    @Test(priority = 5)
+    public void verifyWithdraw2() throws Exception{
+        withdraw = new Withdraw(driver);
+        String originalBal = driver.findElement(By.xpath("//strong[@class='ng-binding'][2]")).getText();
+        int originalBalance = Integer.parseInt(originalBal);
+        Thread.sleep(2000);
+        withdraw.enterAmount();
+        Thread.sleep(2000);
+        withdraw.submit();
+        Thread.sleep(2000);
+        String updatedBal = driver.findElement(By.xpath("//strong[@class='ng-binding'][2]")).getText();
+        int updatedBalance = Integer.parseInt(updatedBal);
+        if (originalBalance == updatedBalance){
+            logger.info("Unsuccessful transaction");
+        }
+        else{
+            logger.error("Error : Debited amount is more than the available amount");
+        }
+    }
 
     @Test(priority = 6)
     public void verifyTransaction() throws Exception{
-        System.out.println("pass");
+        transaction = new Transactions(driver);
+        transaction.clickTransaction();
+        Thread.sleep(2000);
+        Boolean verify = transaction.verifyTransaction();
+        if (verify){
+            logger.info("Successful transactions");
+            takeScreenShot("Transactions");
+        }
+        else {
+            logger.error("Error in verifyTransaction method");
+        }
     }
 }

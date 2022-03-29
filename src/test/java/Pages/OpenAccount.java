@@ -29,9 +29,9 @@ public class OpenAccount {
 
     public void setSelectCurrency() throws Exception{
         Select select = new Select(driver.findElement(selectCurrency));
-        Random random = new Random();
-        int randomNum = random.nextInt(3);
-        select.selectByIndex(randomNum);
+//        Random random = new Random();
+//        int randomNum = random.nextInt(3);
+        select.selectByIndex(1);
         Thread.sleep(2000);
     }
 
