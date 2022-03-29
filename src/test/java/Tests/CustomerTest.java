@@ -148,9 +148,11 @@ public class CustomerTest extends BaseClass{
         int updatedBalance = Integer.parseInt(updatedBal);
         if (updatedBalance == originalBalance - 6000){
             logger.info("Withdraw successful");
+            takeScreenShot("valid transaction");
         }
         else{
             logger.error("Error in verifyWithdraw method");
+            takeScreenShot("Error : transaction");
         }
     }
 
@@ -168,9 +170,11 @@ public class CustomerTest extends BaseClass{
         int updatedBalance = Integer.parseInt(updatedBal);
         if (originalBalance == updatedBalance){
             logger.info("Unsuccessful transaction");
+            takeScreenShot("Invalid transaction");
         }
         else{
             logger.error("Error : Debited amount is more than the available amount");
+            takeScreenShot("Error");
         }
     }
 
